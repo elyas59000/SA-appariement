@@ -4,14 +4,14 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Adolescent {
+public class Adolescent {
     private String nom;
     private String prenom;
     private String genre;
     private LocalDate date_naissance;
     private String pays_origine;
-    private boolean est_hote; // true si l'adolescent est hôte, false sinon
-    protected Map<Critere,String> criteres;
+    private boolean est_hote; // true si ado est hôte, false sinon
+    private Map<Critere,Object> criteres;
 
 
     public Adolescent(String nom, String prenom, String genre, LocalDate date_naissance, String pays_origine, boolean est_hote) {
@@ -25,16 +25,16 @@ public abstract class Adolescent {
     }
 
     
-    public String gestOuHote(){
+    public String gestOuHote(){ // permet de savoir si l'adolescent est hôte ou guest
         if (est_hote == true) {
-            return "l'adolescent est hote";
+            return "l'Adolescent est hote";
         } else {
-            return "l' est un Guest";
+            return "l'Adolescent est un Guest";
         }
     }
     
 
-    public boolean estCompatible(Adolescent autre) {
+    public boolean estCompatible(Adolescent autre) { //retourne true si les deux adolescents sont compatibles
         if (this.CompaAnimal(autre) == false) {
             return false;
         }
@@ -44,31 +44,64 @@ public abstract class Adolescent {
         return true;
     }
 
-
-
-
     
-    public String getCritere(Critere critere) {
-        return criteres.getOrDefault(critere, "NON");
+ public Map<Critere, Object> getCriteres() { 
+        return criteres;
     }
+
+public Object getCritere(Critere critere) {
+        if (criteres.containsKey(critere)) {
+            return criteres.get(critere);
+        } else {
+            return null;
+        }
+    }
+
+    public String getCritereTexte(Critere critere) {
+        if (critere.getType() == 'T') {
+            return (String) criteres.get(critere);
+        }
+        return null;
+    }
+    
+    public Boolean getCritereBooleen(Critere critere) {
+        if (critere.getType() == 'B') {
+            return (Boolean) criteres.get(critere);
+        }
+        return null;
+    }
+
 
     public boolean CompaAnimal(Adolescent autre) {
-        if(autre.getCritere(Critere.GUEST_ANIMAL_ALLERGY) == "OUI" && autre.getCritere(Critere.HOST_HAS_ANIMAL) == "OUI") {
-            return false;
-        }
-        return true;
+        // Si le guest (this) est allergique aux animaux et l’hôte (autre) a des animaux → pas compatible
+        return !(this.getCritereBooleen(Critere.GUEST_ANIMAL_ALLERGY) &&
+                 autre.getCritereBooleen(Critere.HOST_HAS_ANIMAL));
     }
+
     public boolean CompaAlimentaire(Adolescent autre) {
-        if(autre.getCritere(Critere.GUEST_FOOD) == "OUI" && autre.getCritere(Critere.HOST_FOOD) == "OUI") {
-            return false;
+        // Compatibles si les régimes sont les mêmes
+        String nourritureinvité = this.getCritereTexte(Critere.GUEST_FOOD);
+        String nourriturehôte = autre.getCritereTexte(Critere.HOST_FOOD);
+        if(nourritureinvité.equals("")){
+            return true;
+        }else{
+            return nourritureinvité != null && nourritureinvité.equals(nourriturehôte);
+
         }
-        return true;
-    }    
+
+    }
 
 
 
-
+    public void ajouterValeur(Critere critere, String valeur) {
+        if (critere.getType() == 'T') {
+            criteres.put(critere, valeur);
+        }
+    }
     
-
-   
+    public void ajouterValeur(Critere critere, boolean valeur) {
+        if (critere.getType() == 'B') {
+            criteres.put(critere, valeur);
+        }
+    }
 }

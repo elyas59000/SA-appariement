@@ -19,7 +19,7 @@ public enum Critere {
     public char getType(){
         return this.type;
     }
-    
+     
     public String getCritere(){
         return this.name();
     }
