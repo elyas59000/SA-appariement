@@ -45,18 +45,20 @@ public class Adolescent {
     }
 
     
- public Map<Critere, Object> getCriteres() { 
+    public Map<Critere, Object> getDico() { 
         return criteres;
+        
     }
 
-public Object getCritere(Critere critere) {
-        if (criteres.containsKey(critere)) {
-            return criteres.get(critere);
+    public Object getCritere(Critere critere) {
+         if (criteres.containsKey(critere)) {
+             return criteres.get(critere);
         } else {
             return null;
         }
     }
 
+    //permet d'avoir la valeur d'un critére de type String
     public String getCritereTexte(Critere critere) {
         if (critere.getType() == 'T') {
             return (String) criteres.get(critere);
@@ -64,6 +66,7 @@ public Object getCritere(Critere critere) {
         return null;
     }
     
+    //permet d'avoir la valeur d'un critére de type booléean
     public Boolean getCritereBooleen(Critere critere) {
         if (critere.getType() == 'B') {
             return (Boolean) criteres.get(critere);
@@ -92,7 +95,7 @@ public Object getCritere(Critere critere) {
     }
 
 
-
+    //permet d'ajouter une valeur a une critére 
     public void ajouterValeur(Critere critere, String valeur) {
         if (critere.getType() == 'T') {
             criteres.put(critere, valeur);
