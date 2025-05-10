@@ -15,18 +15,18 @@ public class TestAdolescent {
 
         emile.ajouterValeur(Critere.GUEST_ANIMAL_ALLERGY, true);
         emile.ajouterValeur(Critere.GUEST_FOOD, "vegetarian");
-        System.out.println("Émile est alergique ? " + emile.getCritere(Critere.GUEST_ANIMAL_ALLERGY));
+        System.out.println("Émile est alergique ? " + emile.getValeur(Critere.GUEST_ANIMAL_ALLERGY));
 
 
         enzo.ajouterValeur(Critere.HOST_HAS_ANIMAL, true);
         enzo.ajouterValeur(Critere.HOST_FOOD, "vegetarian");
-        System.out.println("Enzo a un animal ? " + enzo.getCritere(Critere.HOST_HAS_ANIMAL));
+        System.out.println("Enzo a un animal ? " + enzo.getValeur(Critere.HOST_HAS_ANIMAL));
         
 
         elyas.ajouterValeur(Critere.GUEST_ANIMAL_ALLERGY, false);
         elyas.ajouterValeur(Critere.GUEST_FOOD, "");
-        System.out.println("Élyas est alergique ? " + elyas.getCritere(Critere.GUEST_ANIMAL_ALLERGY));
-        System.out.println("quelle regime accepte enzo: " + enzo.getCritere(Critere.HOST_FOOD));
+        System.out.println("Élyas est alergique ? " + elyas.getValeur(Critere.GUEST_ANIMAL_ALLERGY));
+        System.out.println("quelle regime accepte enzo: " + enzo.getValeur(Critere.HOST_FOOD));
         System.out.println();
 
 
@@ -45,6 +45,32 @@ public class TestAdolescent {
         System.out.println("comptabilité animal entre elyas et enzo : " + elyas.CompaAnimal(enzo));
         System.out.println("comptabilité alimentaire entre elyas et enzo: "+ elyas.CompaAlimentaire(enzo));
         System.out.println("elyas et compatible avec enzo ? "+ elyas.estCompatible(enzo) );
+        System.out.println();
+
+
+        elyas.ajouterValeur(Critere.PAIR_GENDER, "M");  // Elyas veut être apparié avec un garçon
+        enzo.ajouterValeur(Critere.PAIR_GENDER, "M");   // Enzo aussi
+        emile.ajouterValeur(Critere.PAIR_GENDER, "F");  // Emile veut une fille
+
+        // Ajout des hobbies
+        emile.ajouterValeur(Critere.HOBBIES, "football");
+        emile.ajouterValeur(Critere.HOBBIES, "jeux vidéo");
+        
+        enzo.ajouterValeur(Critere.HOBBIES, "football");
+        enzo.ajouterValeur(Critere.HOBBIES, "cuisine");
+
+        elyas.ajouterValeur(Critere.HOBBIES, "lecture");
+        elyas.ajouterValeur(Critere.HOBBIES, "cuisine");
+
+        // Affichage des hobbies
+        System.out.println("Hobbies d'Émile : " + emile.getValeur(Critere.HOBBIES));
+        System.out.println("Hobbies d'Enzo : " + enzo.getValeur(Critere.HOBBIES));
+        System.out.println("Hobbies d'Elyas : " + elyas.getValeur(Critere.HOBBIES));
+        System.out.println();
+
+        // Test des scores d'affectation
+        System.out.println("Score d'affectation entre Émile et Enzo : " + emile.ScoreAffectation(enzo));
+        System.out.println("Score d'affectation entre Élyas et Enzo : " + elyas.ScoreAffectation(enzo));
 
     }
 }
