@@ -3,6 +3,7 @@ package src.Projet;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class Adolescent {
     private LocalDate date_naissance;
     private String pays_origine;
     private boolean est_hote; // true si ado est hôte, false sinon
-    private Map<Critere,Object> criteres;
+    private Map<Critere,String> criteres;
 
 
     public Adolescent(String nom, String prenom, String genre, LocalDate date_naissance, String pays_origine, boolean est_hote) {
@@ -35,104 +36,120 @@ public class Adolescent {
             return "l'Adolescent est un Guest";
         }
     }
-    
-
-    public boolean estCompatible(Adolescent autre) { //retourne true si les deux adolescents sont compatibles
-        return this.CompaAnimal(autre) && this.CompaAlimentaire(autre);
-    }
-
-    
-    public Map<Critere, Object> getDico() { 
+       
+    public Map<Critere, String> getDico() { 
         return criteres;   
     }
 
-    public Object getValeur(Critere critere) {
-        Object valeur = criteres.get(critere);
-        if (valeur == null) return null;
-
-        if (critere.getType() == 'T' && valeur instanceof String) {
-            return (String) valeur;
-        } else if (critere.getType() == 'B' && valeur instanceof Boolean) {
-            return (Boolean) valeur;
-        } else if (critere == Critere.HOBBIES && valeur instanceof List) {
-            return valeur; // Retourne directement la liste des hobbies
-        }
-        return null;
+    public String getCritere(Critere critere) {
+        return criteres.getOrDefault(critere, "");
     }
 
- 
-    
-    public boolean CompaAnimal(Adolescent autre) {
-        // Si le guest (this) est allergique aux animaux et l’hôte (autre) a des animaux → pas compatible
-        Boolean allergie = (Boolean) this.getValeur(Critere.GUEST_ANIMAL_ALLERGY);
-        Boolean animauxHote = (Boolean) autre.getValeur(Critere.HOST_HAS_ANIMAL);
-    
-        if (allergie != null && animauxHote != null) {
-            if (allergie && animauxHote) {
-                return false;
-            }
+       //permet d'ajouter une valeur a une critére 
+    public void addCritere(Critere critere, String valeur) {
+        try {
+            validerCritere(critere, valeur);
+            criteres.put(critere, valeur.trim().toLowerCase());
+        } catch (CritereInvalideException e) {
+            System.out.println("Critère rejeté : " + e.getMessage());
         }
-        return true;
+    }
+
+   
+
+
+
+    public boolean estCompatible(Adolescent autre) { //retourne true si les deux adolescents sont compatibles
+        return this.CompaAnimal(autre) && this.CompaAlimentaire(autre) && compatibiliteSpecifiquePays(autre);
+    }
+
+
+        
+    public boolean CompaAnimal(Adolescent autre) {
+        boolean inviteAllergique = this.getCritere(Critere.GUEST_ANIMAL_ALLERGY).equals("yes");
+        boolean hoteAUnAnimal = autre.getCritere(Critere.HOST_HAS_ANIMAL).equals("yes");
+        return !(inviteAllergique && hoteAUnAnimal);
     }
     
 
     public boolean CompaAlimentaire(Adolescent autre) {
-        // Compatibles si les régimes sont les mêmes
-        String nourritureinvité = (String) this.getValeur(Critere.GUEST_FOOD);
-        String nourriturehôte = (String) autre.getValeur(Critere.HOST_FOOD);
-        if(nourritureinvité.equals("")){
-            return true;
-        }else{
-            return nourritureinvité != null && nourritureinvité.equals(nourriturehôte);
+        String foodInvite = this.getCritere(Critere.GUEST_FOOD);
+        String foodHote = autre.getCritere(Critere.HOST_FOOD);
 
+        if (foodInvite.isEmpty()) return true;
+
+        // Le host doit contenir toutes les contraintes du guest
+        List<String> contraintesInvite = Arrays.asList(foodInvite.split(","));
+        List<String> contraintesHote = Arrays.asList(foodHote.split(","));
+
+        for (String contrainte : contraintesInvite) {
+            if (!contraintesHote.contains(contrainte)) return false;
         }
 
+        return true;
+    }
+
+    private boolean compatibiliteSpecifiquePays(Adolescent autre) {
+        if (this.pays_origine.equals("france") || autre.pays_origine.equals("france")) {
+            List<String> hobbies1 = Arrays.asList(this.getCritere(Critere.HOBBIES).split(","));
+            List<String> hobbies2 = Arrays.asList(autre.getCritere(Critere.HOBBIES).split(","));
+
+            for (String h : hobbies1) {
+                if (hobbies2.contains(h)) {
+                    return true;
+                }
+            }
+            return false; // Aucun hobby en commun → incompatible
+        }
+        return true; // Autres pays → on ne change rien
     }
 
 
-    //permet d'ajouter une valeur a une critére 
-   public void ajouterValeur(Critere critere, Object valeur) {
+    public int ScoreAffectation(Adolescent autre) {
+        int score = 10;
+
+        // Préférences de genre
+        String pref1 = this.getCritere(Critere.PAIR_GENDER);
+        String pref2 = autre.getCritere(Critere.PAIR_GENDER);
+
+        if ((pref1.isEmpty() || pref1.equals(autre.genre)) && (pref2.isEmpty() || pref2.equals(this.genre))) {
+            score -= 2;
+        }
+
+        // Âge
+        long mois = Math.abs(ChronoUnit.MONTHS.between(this.date_naissance, autre.date_naissance));
+        if (mois <= 18) score -= 2;
+
+        // Hobbies
+        List<String> hobbies1 = Arrays.asList(getCritere(Critere.HOBBIES).split(","));
+        List<String> hobbies2 = Arrays.asList(autre.getCritere(Critere.HOBBIES).split(","));
+        int commun = 0;
+        for (String hob : hobbies1) {
+            if (hobbies2.contains(hob)) commun++;
+        }
+        score -= commun;
+
+        return score;
+    }
+
+    public void validerCritere(Critere critere, String valeur) throws CritereInvalideException {
         char type = critere.getType();
 
-        if (critere == Critere.HOBBIES && valeur instanceof String) {
-            if (!criteres.containsKey(Critere.HOBBIES)) {
-                criteres.put(Critere.HOBBIES, new ArrayList<String>());
+        if (type == 'B') {
+            if (!valeur.equals("yes") && !valeur.equals("no")) {
+                throw new CritereInvalideException(critere, valeur);
             }
-            List<String> hobbies = (List<String>) criteres.get(Critere.HOBBIES);
-            hobbies.add((String) valeur);
-        } else if (critere.getType() == 'T' && valeur instanceof String) {
-            criteres.put(critere, valeur);
-        } else if (critere.getType() == 'B' && valeur instanceof Boolean) {
-            criteres.put(critere, valeur);
         }
-   }
-
-
-
-    public int ScoreAffectation(Adolescent autre){
-        int score = 10;
-        //test pour préférence de genre/genre
-        Object pairGender = getValeur(Critere.PAIR_GENDER);
-        Object pairGenderParam = autre.getValeur(Critere.PAIR_GENDER);
-        if (pairGender != null && pairGender.equals(autre.genre) && pairGenderParam != null && pairGenderParam.equals(this.genre)) {
-            score = score - 2;
+        else if (type == 'T') {
+            // permet de verifier si la valeur est vide ou contient que des espaces
+            if (valeur.trim().isEmpty()) {
+                throw new CritereInvalideException(critere, valeur);
+            }
         }
-        //comparaison des date de naissance
-        long monthBetween = ChronoUnit.MONTHS.between(this.date_naissance, autre.date_naissance);
-        if(monthBetween<= 18){
-            score = score - 2;
-        }
-        //comparaison des hobbies
-         List<String> hobbies = (List<String>) this.getValeur(Critere.HOBBIES);
-         List<String> hobbiesAutre = (List<String>) autre.getValeur(Critere.HOBBIES);
-
-        if (hobbies != null && hobbiesAutre != null) {
-            List<String> commun = new ArrayList<>(hobbies);
-            commun.retainAll(hobbiesAutre);
-            score -= commun.size();
-        }    
-        return score;    
     }
+
+    
+
 }
 
 
