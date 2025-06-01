@@ -1,4 +1,4 @@
-package src.Projet;
+package Projet;
 
 import java.time.LocalDate;
 
@@ -71,11 +71,5 @@ public class TestAdolescent {
         // Test des scores d'affectation
         System.out.println("Score d'affectation entre Émile et Enzo : " + emile.ScoreAffectation(enzo));
         System.out.println("Score d'affectation entre Élyas et Enzo : " + elyas.ScoreAffectation(enzo));
-
-        // Test de la compatibilité spécifique au pays
-        System.out.println("Compatibilité spécifique au pays entre Émile et Enzo : " + emile.compatibiliteSpecifiquePays(enzo));
-        System.out.println("Compatibilité spécifique au pays entre Élyas et Enzo : " + elyas.compatibiliteSpecifiquePays(enzo));
-        System.out.println("Compatibilité spécifique au pays entre Émile et Élyas : " + emile.compatibiliteSpecifiquePays(elyas));
-
     }
 }

@@ -1,4 +1,4 @@
-package src.Projet;
+package Projet;
 
 public enum Critere {
     GUEST_ANIMAL_ALLERGY('B'),
