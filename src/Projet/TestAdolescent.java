@@ -6,11 +6,11 @@ public class TestAdolescent {
 
     public static void main(String[] args) {
         //emile(guest)
-        Adolescent emile = new Adolescent("Camard", "Emile", "M", LocalDate.of(2006, 1, 1), "France", false);
+        Adolescent emile = new Adolescent("Camard", "Emile", "M", LocalDate.of(2006, 1, 1), "France");
         //enzo(host)
-        Adolescent enzo = new Adolescent("Dewame", "Enzo", "M", LocalDate.of(2006, 4, 1), "France", true);
+        Adolescent enzo = new Adolescent("Dewame", "Enzo", "M", LocalDate.of(2006, 4, 1), "France");
         //elyas(guest)
-        Adolescent elyas = new Adolescent("Rabhiu", "Elyas", "M", LocalDate.of(2005, 4, 1), "France", false);
+        Adolescent elyas = new Adolescent("Rabhiu", "Elyas", "M", LocalDate.of(2005, 4, 1), "France");
 
 
         emile.addCritere(Critere.GUEST_ANIMAL_ALLERGY, "yes");

@@ -1,6 +1,6 @@
-InvitePrenon;InviteNom;HotePrenom;HoteNom;Score
-1;invité;2;hôte;8
-2;invité;5;hôte;7
-4;invité;4;hôte;7
+InvitePrenom;InviteNom;HotePrenom;HoteNom;Score
 5;invité;5;hôte;8
+1;invité;2;hôte;8
+4;invité;4;hôte;7
+2;invité;null;null;inf
 3;invité;3;hôte;7

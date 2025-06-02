@@ -9,14 +9,14 @@ import java.util.Map;
 public class TestAppariement {
     public static void main(String[] args){
         try{
-            HashSet<Adolescent> listeInvite = File.importListAdo("src/Projet/invites.csv",false);
-            HashSet<Adolescent> listeHote = File.importListAdo("src/Projet/hotes.csv",true);
+            HashSet<Adolescent> listeInvite = File.importListAdo("res/invites.csv");
+            HashSet<Adolescent> listeHote = File.importListAdo("res/hotes.csv");
 
             for(Adolescent a : listeInvite){
                 System.out.println(a.toString());
             }
-            File.export("export", listeInvite, listeHote);
             HashMap<Adolescent,Adolescent> appariement =  Appariement.apparier(listeInvite, listeHote);
+            File.export("export", appariement);
             System.out.println("\n===== APPARIEMENTS =====\n");
             for(Map.Entry<Adolescent, Adolescent> entry : appariement.entrySet()){
                 Adolescent invite = entry.getKey();
@@ -27,6 +27,8 @@ public class TestAppariement {
                     System.out.println(invite.getNom() + " " + invite.getPrenom() + "  :  " + hote.getNom() + " " + hote.getPrenom()+ " | Avec un score de :" + invite.ScoreAffectation(hote));    
                 }
             }
+
+            Historique.sauvegarderHistorique("historique",appariement);
         }catch(FileNotFoundException e){
             System.err.println("erreur : " + e.getMessage());
         }catch(IOException e){

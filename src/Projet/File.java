@@ -7,12 +7,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 
 public class File {
     
-    public static HashSet<Adolescent> importListAdo(String name, boolean estHote) throws IOException{
+    public static HashSet<Adolescent> importListAdo(String name) throws IOException{
         try (BufferedReader br = new BufferedReader(new FileReader(name))) {
             String entete = br.readLine();
             HashSet<Adolescent> ados = new HashSet<>();
@@ -24,7 +26,7 @@ public class File {
                 String country = partie[2];
                 LocalDate date_naissance = LocalDate.parse(partie[3].trim());
                 String genre = partie[9];
-                Adolescent ado = new Adolescent(nom, prenom, genre, date_naissance, country, estHote);
+                Adolescent ado = new Adolescent(nom, prenom, genre, date_naissance, country);
                 String guest_animal_allergy = partie[4];
                 String host_has_animal = partie[5];
                 String guest_food_constraint = partie[6];
@@ -47,21 +49,28 @@ public class File {
 
     }
 
-    public static void export(String name, HashSet<Adolescent> listeInvité, HashSet<Adolescent> listeHote)  {
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(name + ".csv"))){
-            bw.write("InvitePrenon;InviteNom;HotePrenom;HoteNom;Score");
+    public static void export(String chemin, HashMap<Adolescent, Adolescent> appariements) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(chemin))) {
+            bw.write("InvitePrenom;InviteNom;HotePrenom;HoteNom;Score");
             bw.newLine();
-            for(Adolescent a: listeInvité){
-                for(Adolescent b : listeHote){
-                    if(!a.equals(b) && !a.estHote() && b.estHote() && a.estCompatible(b)){
-                        bw.write(a.getPrenom() + ";" + a.getNom() + ";" + b.getPrenom() + ";" + b.getNom()  + ";" + a.ScoreAffectation(b));
-                        bw.newLine();
-                    }
+
+            for (Map.Entry<Adolescent, Adolescent> entry : appariements.entrySet()) {
+                Adolescent invite = entry.getKey();
+                Adolescent hote = entry.getValue();
+
+                if (hote != null) {
+                    int score = invite.ScoreAffectation(hote);
+                    bw.write(invite.getPrenom() + ";" + invite.getNom() + ";" +
+                             hote.getPrenom() + ";" + hote.getNom() + ";" + score);
+                } else {
+                    // Aucun hôte trouvé
+                    bw.write(invite.getPrenom() + ";" + invite.getNom() + ";null;null;inf");
                 }
+                bw.newLine();
             }
-             
-        }catch(IOException e){
-            System.out.println("erreur : " + e.getMessage());
+
+        } catch (IOException e) {
+            System.err.println("Erreur lors de l'export : " + e.getMessage());
         }
     }
 }

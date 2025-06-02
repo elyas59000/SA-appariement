@@ -2,27 +2,55 @@ package Projet;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 public class Appariement {
 
+    
     public static HashMap<Adolescent, Adolescent> apparier(
             HashSet<Adolescent> invites,
-            HashSet<Adolescent> hotes) {
+            HashSet<Adolescent> hotes,
+            HashMap<Adolescent, Adolescent> historique) {
 
-        // Copie de la liste des hôtes pour pouvoir retirer un hôte lorsqu'il est assigné
         HashSet<Adolescent> hotesRestants = new HashSet<>(hotes);
         HashMap<Adolescent, Adolescent> resultat = new HashMap<>();
 
         for (Adolescent invite : invites) {
-            // On ne traite que ceux marqués invités
-            if (!invite.estHote()) {
-                Adolescent meilleurHote = null;
-                int meilleurScore = Integer.MAX_VALUE;
+            Adolescent meilleurHote = null;
+            int meilleurScore = Integer.MAX_VALUE;
 
-                // Parcours des hôtes encore disponibles
-                for (Adolescent hote : hotesRestants) {
-                    if (invite.estCompatible(hote)) {
+            for (Adolescent hote : hotesRestants) {
+                if (invite.equals(hote)) {
+                    // Même personne, on ne traite pas
+                } else if (!invite.estCompatible(hote)) {
+                    // Non compatibles selon les critères classiques
+                } else {
+                    // Gestion de l'historique
+                    Adolescent ancienHote = null;
+                    if (historique != null) {
+                        ancienHote = historique.get(invite);
+                    }
+
+                    String histInvite = invite.getCritere(Critere.HISTORY);
+                    String histHote = hote.getCritere(Critere.HISTORY);
+
+                    boolean refusAppariement = false;
+                    boolean exigenceReappairage = false;
+
+                    if (ancienHote != null && ancienHote.equals(hote)) {
+                        if (histInvite.equals("other") || histHote.equals("other")) {
+                            refusAppariement = true;
+                        } else if (histInvite.equals("same") && histHote.equals("same")) {
+                            exigenceReappairage = true;
+                        }
+                    }
+
+                    if (refusAppariement) {
+                        // Ils ne doivent pas être appariés
+                    } else if (exigenceReappairage) {
+                        // Obligation de réappairer
+                        meilleurHote = hote;
+                        break; // On arrête la recherche, car c’est obligatoire
+                    } else {
                         int score = invite.ScoreAffectation(hote);
                         if (score < meilleurScore) {
                             meilleurScore = score;
@@ -30,19 +58,24 @@ public class Appariement {
                         }
                     }
                 }
+            }
 
-                // S’il n’existe aucun hôte compatible, on met null
-                if (meilleurHote == null) {
-                    resultat.put(invite, null);
-                } else {
-                    resultat.put(invite, meilleurHote);
-                    // Retire l’hôte pour qu’il ne soit pas réutilisé
-                    hotesRestants.remove(meilleurHote);
-                }
+            if (meilleurHote != null) {
+                resultat.put(invite, meilleurHote);
+                hotesRestants.remove(meilleurHote);
+            } else {
+                resultat.put(invite, null);
             }
         }
+
         return resultat;
     }
+
+    public static HashMap<Adolescent, Adolescent> apparier(HashSet<Adolescent> invites,HashSet<Adolescent> hotes){
+        return apparier(invites, hotes,null);
+    }
+
+
 
  
 }

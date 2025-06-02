@@ -14,24 +14,18 @@ public class Adolescent implements Serializable {
     private String genre;
     private LocalDate date_naissance;
     private String pays_origine;
-    private boolean est_hote; // true si ado est hôte, false sinon
     private Map<Critere,String> criteres;
 
 
-    public Adolescent(String nom, String prenom, String genre, LocalDate date_naissance, String pays_origine, boolean est_hote) {
+    public Adolescent(String nom, String prenom, String genre, LocalDate date_naissance, String pays_origine) {
         this.nom = nom;
         this.prenom = prenom;
         this.genre = genre;
         this.date_naissance = date_naissance;
         this.pays_origine = pays_origine;
         this.criteres = new HashMap<>();
-        this.est_hote = est_hote;
     }
 
-    
-    public boolean estHote(){
-        return this.est_hote;
-    }
        
     public Map<Critere, String> getDico() { 
         return criteres;   
@@ -155,7 +149,6 @@ public class Adolescent implements Serializable {
         sb.append("- Pays : ").append(pays_origine).append("\n");
         sb.append("- Date de naissance : ").append(date_naissance).append(" (").append(getAge()).append(" ans)").append("\n");
         sb.append("- Genre : ").append(genre).append("\n");
-        sb.append("- Rôle : ").append(est_hote ? "Hôte" : "Invité").append("\n");
         sb.append("** Critères et contraintes :\n");
 
         for (Map.Entry<Critere, String> entry : criteres.entrySet()) {

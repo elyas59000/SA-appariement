@@ -1,36 +1,37 @@
-# Projet POO – Version 2 (POO-v2)
+# Projet POO – Version 3 (POO-v3)
 
 ## 🎯 Objectif
-Amélioration du système de gestion des adolescents dans le cadre d’un échange linguistique. Cette version intègre la validation des critères via des exceptions ainsi que des règles de compatibilité spécifiques à certains pays.
+Cette version améliore le projet en ajoutant l'import/export de données, la gestion des appariements et de l’historique des affectations.
 
 ## 📦 Contenu de cette version
 
-- `Adolescent.java` : Refactorisée pour stocker tous les critères sous forme de `Map<Critere, String>`, avec validation intégrée.
-- `Critere.java` : Enumération enrichie avec type de critère (booléen ou texte).
-- `CritereInvalideException.java` : Exception personnalisée levée lors de l’ajout de critères invalides.
-- `TestAdolescent.java` : Classe de test mise à jour pour inclure des cas de validation et des règles pays.
-- `rapport_POO-v2.pdf` : Rapport complet des évolutions (refactoring, exceptions, règles pays).
+- `Adolescent.java` : classe représentant un adolescent avec critères.
+- `Critere.java` : énumération des critères et de leurs types.
+- `File.java` : classe utilitaire pour l’import/export CSV.
+- `Appariement.java` : classe gérant la constitution des paires hôte–invité.
+- `Historique.java` : classe gérant la sérialisation et désérialisation des anciens appariements.
+- `TestAppariement.java` : classe de test exécutant le système complet.
+- `data_invites.csv` et `data_hotes.csv` : fichiers d’entrée.
+- `export.csv` : exemple de résultat généré.
 
-## ✅ Fonctionnalités implémentées
+## ✅ Fonctionnalités
 
-- **Validation des critères** selon leur type (`B`, `T`) via la méthode `validerCritere(...)` :
-  - Booléens : doivent valoir `yes` ou `no`
-  - Textes : ne doivent pas être vides
-- **Refactoring du modèle** :
-  - Passage de `Map<Critere, Object>` → `Map<Critere, String>`
-  - Uniformisation des traitements des critères
-- **Règle de compatibilité spécifique à la France** :
-  - Obligation d’avoir au moins **un hobby en commun** si l’un des deux adolescents est français
-- Mise à jour de `estCompatible(...)` pour intégrer toutes les règles précédentes
+- Import CSV des adolescents
+- Export CSV des appariements
+- Calcul de score d’affinité basé sur :
+  - Allergies
+  - Régime alimentaire
+  - Genre et préférences
+  - Différence d’âge
+  - Hobbies communs
+- Historique pris en compte si existant (fichier binaire)
 
-## 🧪 Tests
+## 🔄 Changements
 
-- Cas d’insertion de critères valides et invalides
-- Compatibilité entre adolescents français et non-français
-- Affichage console des exceptions levées et des décisions d’appariement
+- Suppression de `est_hote` dans `Adolescent.java`
+- Gestion séparée des hôtes et des invités via deux fichiers CSV
+- Meilleure gestion des erreurs sur les critères invalides
 
 ## 🔖 Version
 
-Tag Git : `POO-v2`
-
----
+Tag Git : `POO-v3`
