@@ -1,14 +1,14 @@
-package src.Projet;
+package Projet;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Adolescent {
+public class Adolescent implements Serializable {
     private String nom;
     private String prenom;
     private String genre;
@@ -29,12 +29,8 @@ public class Adolescent {
     }
 
     
-    public String gestOuHote(){ // permet de savoir si l'adolescent est hôte ou guest
-        if (this.est_hote) {
-            return "l'Adolescent est hote";
-        } else {
-            return "l'Adolescent est un Guest";
-        }
+    public boolean estHote(){
+        return this.est_hote;
     }
        
     public Map<Critere, String> getDico() { 
@@ -136,7 +132,7 @@ public class Adolescent {
         char type = critere.getType();
 
         if (type == 'B') {
-            if (!valeur.equals("yes") && !valeur.equals("no")) {
+            if (!valeur.trim().equals("yes") && !valeur.trim().equals("no")) {
                 throw new CritereInvalideException(critere, valeur);
             }
         }
@@ -148,7 +144,44 @@ public class Adolescent {
         }
     }
 
+    public int getAge() {
+        return (int) ChronoUnit.YEARS.between(date_naissance, LocalDate.now());
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("- ").append(prenom).append(" ").append(nom).append("\n");
+        sb.append("- Pays : ").append(pays_origine).append("\n");
+        sb.append("- Date de naissance : ").append(date_naissance).append(" (").append(getAge()).append(" ans)").append("\n");
+        sb.append("- Genre : ").append(genre).append("\n");
+        sb.append("- Rôle : ").append(est_hote ? "Hôte" : "Invité").append("\n");
+        sb.append("** Critères et contraintes :\n");
+
+        for (Map.Entry<Critere, String> entry : criteres.entrySet()) {
+            sb.append("  - ").append(entry.getKey().name()).append(" : ").append(entry.getValue()).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    public String getPrenom(){
+        return this.prenom;
+    }
+
+    public String getNom(){
+        return this.nom;
+    }
+
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Adolescent)) return false;
+        Adolescent a = (Adolescent) o;
+        return nom.equals(a.nom) && prenom.equals(a.prenom) && date_naissance.equals(a.date_naissance);
+    }
     
+
 
 
     
