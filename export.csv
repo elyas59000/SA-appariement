@@ -1,7 +1,6 @@
 InvitePrenon;InviteNom;HotePrenom;HoteNom;Score
- Khijazy;Argob; Maalik;Khargol;7
- Khijazy;Argob; Digby;Adonia;8
- Khijazy;Argob; Castel;Bellatrix;5
- Maalik;Khargol; Khijazy;Argob;7
- Castel;Bellatrix; Maalik;Khargol;7
- Digby;Adonia; Khijazy;Argob;8
+1;invité;2;hôte;8
+2;invité;5;hôte;7
+4;invité;4;hôte;7
+5;invité;5;hôte;8
+3;invité;3;hôte;7

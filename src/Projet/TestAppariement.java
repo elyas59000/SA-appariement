@@ -9,8 +9,8 @@ import java.util.Map;
 public class TestAppariement {
     public static void main(String[] args){
         try{
-            HashSet<Adolescent> listeInvite = File.importListAdo("src/Projet/data.csv",false);
-            HashSet<Adolescent> listeHote = File.importListAdo("src/Projet/data.csv",true);
+            HashSet<Adolescent> listeInvite = File.importListAdo("src/Projet/invites.csv",false);
+            HashSet<Adolescent> listeHote = File.importListAdo("src/Projet/hotes.csv",true);
 
             for(Adolescent a : listeInvite){
                 System.out.println(a.toString());
@@ -22,9 +22,9 @@ public class TestAppariement {
                 Adolescent invite = entry.getKey();
                 Adolescent hote = entry.getValue();
                 if (hote == null) {
-                    System.out.println(" Aucun hôte trouvé pour : " + invite.getPrenom() + " " + invite.getNom());
+                    System.out.println(" Aucun hôte trouvé pour : " + invite.getNom() + " " + invite.getPrenom());
                 }else{
-                    System.out.println(invite.getPrenom() + " " + invite.getNom() + "  :  " + hote.getPrenom() + " " + hote.getNom());    
+                    System.out.println(invite.getNom() + " " + invite.getPrenom() + "  :  " + hote.getNom() + " " + hote.getPrenom()+ " | Avec un score de :" + invite.ScoreAffectation(hote));    
                 }
             }
         }catch(FileNotFoundException e){

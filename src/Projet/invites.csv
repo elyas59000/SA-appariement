@@ -1,0 +1,6 @@
+FORENAME;NAME;COUNTRY;BIRTH_DATE;GUEST_ANIMAL_ALLERGY;HOST_HAS_ANIMAL;GUEST_FOOD_CONSTRAINT;HOST_FOOD;HOBBIES;GENDER;PAIR_GENDER;HISTORY
+invité;1;France;2005-06-12;Chat;Non;Végétarien;Mixte;Lecture,Musique;F;M;Aucun
+invité;2;Allemagne;2006-11-23;Aucune;Oui;Aucune;Végétarien;Football,Échecs;M;F;Aucun
+invité;3;Espagne;2004-08-30;Chien;Non;Végan;Végan;Peinture,Vélo;F;M;Aucun
+invité;4;Italie;2005-02-17;Aucune;Non;Sans gluten;Sans gluten;Photographie,Jeux vidéo;M;F;Aucun
+invité;5;Belgique;2006-01-09;Chat;Oui;Aucune;Aucune;Randonnée,Cuisine;F;F;Aucun
