@@ -1,4 +1,4 @@
-# Projet POO – Version 3 (POO-v3)
+# Projet POO – Version 4 (POO-v4)
 
 ## 🎯 Objectif
 Cette version améliore le projet en ajoutant l'import/export de données, la gestion des appariements et de l’historique des affectations.
@@ -10,28 +10,24 @@ Cette version améliore le projet en ajoutant l'import/export de données, la ge
 - `File.java` : classe utilitaire pour l’import/export CSV.
 - `Appariement.java` : classe gérant la constitution des paires hôte–invité.
 - `Historique.java` : classe gérant la sérialisation et désérialisation des anciens appariements.
+- **(New)** `Pretraitement.java` : classe permettant de supprimer les adolescent incohérent.
+
 - `TestAppariement.java` : classe de test exécutant le système complet.
 - `data_invites.csv` et `data_hotes.csv` : fichiers d’entrée.
 - `export.csv` : exemple de résultat généré.
 
-## ✅ Fonctionnalités
+## ✅ Fonctionnalités ajoutés
 
-- Import CSV des adolescents
-- Export CSV des appariements
-- Calcul de score d’affinité basé sur :
-  - Allergies
-  - Régime alimentaire
-  - Genre et préférences
-  - Différence d’âge
-  - Hobbies communs
-- Historique pris en compte si existant (fichier binaire)
+Méthode nettoyerAdolescent() ajouté dans une nouvelle classe Pretraitement qui en fixant une limite d'incohérence
+maximale permet de supprimer un adolescent dont le nombre d'incohérence dépasse cette limite.
 
-## 🔄 Changements
+Cette méthode ce base sur le fait que l'adolescent est allergique aux animaux et posséde un animal et sur la méthode valierCritere() de la classe adolescent
 
-- Suppression de `est_hote` dans `Adolescent.java`
-- Gestion séparée des hôtes et des invités via deux fichiers CSV
-- Meilleure gestion des erreurs sur les critères invalides
+
+
+
+
 
 ## 🔖 Version
 
-Tag Git : `POO-v3`
+Tag Git : `POO-v4`
