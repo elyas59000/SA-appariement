@@ -1,4 +1,4 @@
-package Projet;
+package dev;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 
-public class File {
+public class FileAdo {
     
     public static HashSet<Adolescent> importListAdo(String name) throws IOException{
         try (BufferedReader br = new BufferedReader(new FileReader(name))) {

@@ -1,4 +1,4 @@
-package Projet;
+package dev;
 
 public class CritereInvalideException extends Exception {
     public CritereInvalideException(Critere critere, String valeur) {

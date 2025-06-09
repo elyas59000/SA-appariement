@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ExplicationCriteresController">
    <top>
       <Label text="C’est Pas Pair 🤝" BorderPane.alignment="CENTER">
          <font>
@@ -51,7 +51,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="51.0" prefWidth="600.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" text="Retour " />
+                  <Button fx:id="boutonRetour" mnemonicParsing="false" onAction="#allerSelectionMenu" prefHeight="36.0" prefWidth="100.0" text="Retour " />
                </children>
             </HBox>
             <Region prefHeight="40.0" prefWidth="600.0" />

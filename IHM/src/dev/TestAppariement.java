@@ -1,4 +1,4 @@
-package Projet;
+package dev;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,14 +9,14 @@ import java.util.Map;
 public class TestAppariement {
     public static void main(String[] args){
         try{
-            HashSet<Adolescent> listeInvite = File.importListAdo("res/invites.csv");
-            HashSet<Adolescent> listeHote = File.importListAdo("res/hotes.csv");
+            HashSet<Adolescent> listeInvite = FileAdo.importListAdo("res/invites.csv");
+            HashSet<Adolescent> listeHote = FileAdo.importListAdo("res/hotes.csv");
 
             for(Adolescent a : listeInvite){
                 System.out.println(a.toString());
             }
             HashMap<Adolescent,Adolescent> appariement =  Appariement.apparier(listeInvite, listeHote);
-            File.export("export", appariement);
+            FileAdo.export("export", appariement);
             System.out.println("\n===== APPARIEMENTS =====\n");
             for(Map.Entry<Adolescent, Adolescent> entry : appariement.entrySet()){
                 Adolescent invite = entry.getKey();

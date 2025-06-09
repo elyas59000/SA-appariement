@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.SelectionMenuController">
+   <top>
+      <Label text="C’est Pas Pair 🤝" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </top>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="365.0" prefWidth="240.0" BorderPane.alignment="CENTER">
+         <children>
+            <Region prefHeight="16.0" prefWidth="250.0" />
+            <Region prefHeight="14.0" prefWidth="255.0" />
+            <Region prefHeight="12.0" prefWidth="255.0" />
+            <Label text="Selection des hôtes">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Region prefHeight="23.0" prefWidth="255.0" />
+            <ComboBox fx:id="hoteComboBox" prefHeight="25.0" prefWidth="184.0" promptText="Choississez vote visiteur" />
+            <Region prefHeight="14.0" prefWidth="255.0" />
+            <Region prefHeight="11.0" prefWidth="255.0" />
+            <Label text="Selection des visiteurs">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Region prefHeight="33.0" prefWidth="255.0" />
+            <ComboBox fx:id="visiteurComboBox" prefHeight="25.0" prefWidth="183.0" promptText="Choississez vote visiteur" />
+            <Region prefHeight="33.0" prefWidth="255.0" />
+            <Button fx:id="btnListeAppariements" mnemonicParsing="false" onAction="#allerVersPageVuePair" prefHeight="33.0" prefWidth="196.0" text="Liste Appariements">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Region prefHeight="14.0" prefWidth="255.0" />
+            <Region prefHeight="16.0" prefWidth="255.0" />
+            <Button fx:id="btnRappelCriteres" mnemonicParsing="false" onAction="#allerVersExplicationCriteres" prefHeight="44.0" prefWidth="81.0" text="RAPPEL CRITÈRES">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="235.0" prefWidth="345.0">
+               <children>
+                  <VBox prefHeight="227.0" prefWidth="181.0">
+                     <children>
+                        <Region prefHeight="23.0" prefWidth="179.0" />
+                        <Label prefHeight="21.0" prefWidth="181.0" text="Information de l'hôte">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Region prefHeight="15.0" prefWidth="179.0" />
+                        <Region prefHeight="23.0" prefWidth="179.0" />
+                        <TextArea fx:id="textAreaHote" prefHeight="172.0" prefWidth="179.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="221.0" prefWidth="182.0">
+                     <children>
+                        <Region prefHeight="29.0" prefWidth="181.0" />
+                        <Label prefHeight="21.0" prefWidth="178.0" text="Inforamtion du visiteur">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Region prefHeight="29.0" prefWidth="181.0" />
+                        <Region prefHeight="30.0" prefWidth="181.0" />
+                        <TextArea fx:id="textAreaVisiteur" prefHeight="180.0" prefWidth="181.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Region prefHeight="24.0" prefWidth="345.0" />
+            <TextArea fx:id="textAreaResultat" prefHeight="121.0" prefWidth="360.0" />
+            <Region prefHeight="17.0" prefWidth="345.0" />
+            <HBox prefHeight="57.0" prefWidth="360.0">
+               <children>
+                  <Button fx:id="apparierAuto" mnemonicParsing="false" onAction="#apparierAutomatiquement" prefHeight="45.0" prefWidth="138.0" text="PAIRING AUTOMATIQUE">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="appareierManuel" mnemonicParsing="false" onAction="#apparierSelection" prefHeight="44.0" prefWidth="144.0" text="PAIRING MANUEL">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <Region prefHeight="0.0" prefWidth="345.0" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

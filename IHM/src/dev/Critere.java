@@ -1,4 +1,4 @@
-package Projet;
+package dev;
 
 public enum Critere {
     GUEST_ANIMAL_ALLERGY('B'),
