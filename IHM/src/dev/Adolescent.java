@@ -122,6 +122,33 @@ public class Adolescent implements Serializable {
         return score;
     }
 
+    public int ScoreAffectation(Adolescent autre, int score_initial, int point_ecart_age, int point_preference_genre, int point_hobby_commun) {
+        int score = score_initial;
+
+        // Préférences de genre
+        String pref1 = this.getCritere(Critere.PAIR_GENDER);
+        String pref2 = autre.getCritere(Critere.PAIR_GENDER);
+
+        if ((pref1.isEmpty() || pref1.equals(autre.genre)) && (pref2.isEmpty() || pref2.equals(this.genre))) {
+            score -= point_preference_genre;
+        }
+
+        // Âge
+        long mois = Math.abs(ChronoUnit.MONTHS.between(this.date_naissance, autre.date_naissance));
+        if (mois <= 18) score -= point_ecart_age;
+
+        // Hobbies
+        List<String> hobbies1 = Arrays.asList(getCritere(Critere.HOBBIES).split(","));
+        List<String> hobbies2 = Arrays.asList(autre.getCritere(Critere.HOBBIES).split(","));
+        int commun = 0;
+        for (String hob : hobbies1) {
+            if (hobbies2.contains(hob)) commun++;
+        }
+        score -= commun * point_hobby_commun;
+
+        return score;
+    }
+
     public void validerCritere(Critere critere, String valeur) throws CritereInvalideException {
         char type = critere.getType();
 

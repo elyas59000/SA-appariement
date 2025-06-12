@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.Page_CSVController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.Page_CSVController">
    <top>
-      <Label text="C’est Pas Pair 🤝" BorderPane.alignment="CENTER">
+      <Label contentDisplay="CENTER" prefHeight="76.0" prefWidth="647.0" style="-fx-background-color: lightblue; -fx-alignment: center;" text="C’est Pas Pair 🤝" textAlignment="JUSTIFY" BorderPane.alignment="CENTER">
          <font>
-            <Font size="32.0" />
+            <Font name="Noto Sans Lisu Bold" size="32.0" />
          </font>
       </Label>
    </top>
@@ -26,25 +26,31 @@
                         <VBox alignment="TOP_CENTER" prefHeight="290.0" prefWidth="608.0">
                            <children>
                               <Region prefHeight="22.0" prefWidth="600.0" />
-                              <Label prefHeight="35.0" prefWidth="259.0" text="Bienvenu sur C'est Pas Pair">
+                              <Label prefHeight="35.0" prefWidth="259.0" text="Bienvenue sur C’est Pas Pair">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Verdana" size="18.0" />
                                  </font>
                               </Label>
                               <Region prefHeight="17.0" prefWidth="600.0" />
-                              <Label prefHeight="35.0" prefWidth="259.0" text="Ajouter vos bases de données">
+                              <Label prefHeight="31.0" prefWidth="281.0" text="Ajoutez vos bases de données">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Verdana" size="18.0" />
                                  </font>
                               </Label>
                               <Region prefHeight="17.0" prefWidth="600.0" />
                               <HBox prefHeight="164.0" prefWidth="600.0">
                                  <children>
-                                    <VBox alignment="CENTER" prefHeight="164.0" prefWidth="486.0">
+                                    <Region prefHeight="163.0" prefWidth="335.0" />
+                                    <VBox alignment="CENTER" prefHeight="164.0" prefWidth="486.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
                                        <children>
-                                          <Label text="Ajouter le fichier pour les Hôtes">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="206.0" text="Ajouter le fichier">
                                              <font>
-                                                <Font size="20.0" />
+                                                <Font name="Verdana" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="206.0" text="Hôtes">
+                                             <font>
+                                                <Font name="Verdana Bold" size="20.0" />
                                              </font>
                                           </Label>
                                           <Region prefHeight="17.0" prefWidth="600.0" />
@@ -53,13 +59,20 @@
                                                 <Font size="25.0" />
                                              </font>
                                           </Button>
+                                          <Region prefHeight="17.0" prefWidth="600.0" />
                                        </children>
                                     </VBox>
-                                    <VBox alignment="CENTER" prefHeight="164.0" prefWidth="500.0">
+                                    <Region prefHeight="163.0" prefWidth="335.0" />
+                                    <VBox alignment="CENTER" prefHeight="164.0" prefWidth="500.0" style="-fx-border-color: black; -fx-border-radius: 10px;">
                                        <children>
-                                          <Label text="Ajouter le fichier pour les Visiteurs">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="220.0" text="Ajouter le fichier">
                                              <font>
-                                                <Font size="20.0" />
+                                                <Font name="Verdana" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="220.0" text="Visiteurs">
+                                             <font>
+                                                <Font name="Verdana Bold" size="20.0" />
                                              </font>
                                           </Label>
                                           <Region prefHeight="17.0" prefWidth="600.0" />
@@ -68,10 +81,14 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Button>
+                                          <Region prefHeight="17.0" prefWidth="600.0" />
                                        </children>
                                     </VBox>
+                                    <Region prefHeight="163.0" prefWidth="335.0" />
                                  </children>
                               </HBox>
+                              <Region prefHeight="17.0" prefWidth="600.0" />
+                              <Region prefHeight="17.0" prefWidth="600.0" />
                            </children>
                         </VBox>
                      </children>
@@ -80,7 +97,16 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="51.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="boutonPaire" mnemonicParsing="false" onAction="#allerSelectionMenu" prefHeight="51.0" prefWidth="236.0" text="Commencé a faire les apparaiment" />
+                  <VBox alignment="CENTER" prefHeight="43.0" prefWidth="667.0">
+                     <children>
+                        <Button fx:id="boutonPaire" mnemonicParsing="false" onAction="#allerSelectionMenu" prefHeight="43.0" prefWidth="321.0" text="Commencer les appariements">
+                           <font>
+                              <Font name="Verdana Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Region prefHeight="17.0" prefWidth="600.0" />
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>

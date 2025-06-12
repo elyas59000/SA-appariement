@@ -1,6 +1,6 @@
 Nom;Prenom;Country;DateNaissance;GuestAnimalAllergy;HostHasAnimal;GuestFoodConstraint;HostFood;Hobbies;Genre;PairGender;History
-Dupont;Alice;France;2007-05-20;none;none;none;porc;lecture,musique;female;male;none
-Müller;Hans;Allemagne;2006-09-10;none;none;none;none;football,cinema;male;female;none
-Rossi;Luca;Italie;2007-03-12;none;none;none;vegan;dessin,lecture;male;female;none
-Schneider;Anna;Allemagne;2008-01-25;none;none;none;gluten;piano,jeux video;female;male;none
-Moreau;Claire;France;2007-07-14;none;none;none;none;danse,lecture;female;male;none
+Dupont;Alice;France;2007-05-20;no;yes;none;porc;lecture,musique;female;male;none
+Müller;Hans;Allemagne;2006-09-10;no;no;none;none;football,cinema;male;female;none
+Rossi;Luca;Italie;2007-03-12;no;no;none;none;dessin,lecture;male;female;none
+Schneider;Anna;Allemagne;2008-01-25;no;yes;none;gluten;piano,jeux video;female;male;none
+Moreau;Claire;France;2007-07-14;no;no;none;none;danse,lecture;female;male;none

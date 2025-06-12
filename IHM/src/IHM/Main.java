@@ -13,7 +13,12 @@ import dev.Adolescent;
 
 public class Main extends Application{
 
-    public static HashSet<Adolescent> hotes;
+    public static int score_initial = 10;
+    public static int point_ecart_age = 2;
+    public static int point_preference_genre = 2;
+    public static int point_hobby_commun = 1;
+
+    public static HashSet<Adolescent> hotes;    
     public static HashSet<Adolescent> visiteurs;
     public static HashMap<Adolescent, Adolescent> appariements;
     

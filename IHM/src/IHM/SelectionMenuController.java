@@ -138,8 +138,7 @@ public class SelectionMenuController implements ControlledScene {
             .append(" :\n\n");
 
     boolean compatible = ado1.estCompatible(ado2);
-    int score = ado1.ScoreAffectation(ado2);
-
+    int score = ado1.ScoreAffectation(ado2,Main.score_initial, Main.point_ecart_age, Main.point_preference_genre, Main.point_hobby_commun);
     resultat.append("Compatibles ? ").append(compatible ? "✅ OUI" : "❌ NON").append("\n");
     resultat.append("Score d'affectation : ").append(score).append("\n");
 
@@ -186,6 +185,13 @@ private void apparierSelection() {
     // Initialiser la map si nécessaire
     if (Main.appariements == null) {
         Main.appariements = new HashMap<>();
+        if (!visiteur.estCompatible(hote)) {
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING);
+            alert.setTitle("Contrainte rédhibitoire");
+            alert.setHeaderText(null);
+            alert.setContentText("Attention il existe une contrainte rédhibitoire entre les 2");
+            alert.showAndWait();
+        }
     }
 
     // Forcer l'association

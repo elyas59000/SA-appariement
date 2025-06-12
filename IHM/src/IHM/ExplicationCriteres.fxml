@@ -15,6 +15,13 @@
          <font>
             <Font size="25.0" />
          </font>
+         <graphic>
+            <Label contentDisplay="CENTER" prefHeight="76.0" prefWidth="601.0" style="-fx-background-color: lightblue; -fx-alignment: center;" text="C’est Pas Pair 🤝" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Noto Sans Lisu Bold" size="32.0" />
+               </font>
+            </Label>
+         </graphic>
       </Label>
    </top>
    <center>
@@ -25,9 +32,9 @@
                   <VBox prefHeight="290.0" prefWidth="299.0">
                      <children>
                         <Region prefHeight="31.0" prefWidth="289.0" />
-                        <Label prefHeight="41.0" prefWidth="270.0" text="                          Les critères rédibitoires">
+                        <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="25.0" prefWidth="274.0" text="Les critères rédibitoires">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="Verdana Bold" size="16.0" />
                            </font>
                         </Label>
                         <TextArea prefHeight="235.0" prefWidth="289.0" text="Il existe trois critères rédhibitoires :&#10;Le critère animal : si l’hôte a un animal,&#10; le visiteur ne doit pas avoir d’allergie.&#10;Le critère alimentaire : si le visiteur suit un régime &#10;spécifique, l’hôte doit suivre le même régime.&#10;Le critère de territoire : selon le pays, un visiteur&#10; (ou un hôte) peut refuser d’être apparié avec&#10; une personne venant de ce pays." />
@@ -37,14 +44,63 @@
                   </VBox>
                   <VBox prefHeight="290.0" prefWidth="322.0">
                      <children>
-                        <Region prefHeight="31.0" prefWidth="289.0" />
-                        <Label prefHeight="36.0" prefWidth="312.0" text="              Fonctionnement du score d’appariement">
+                        <Region prefHeight="16.0" prefWidth="312.0" />
+                        <Label prefHeight="36.0" prefWidth="312.0" text="    score d’appariement">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="Verdana Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextArea prefHeight="230.0" prefWidth="312.0" text="Le score d’affinité commence à 10 points&#10; et diminue selon trois critères.&#10;Si l’écart d’âge entre l’hôte et le visiteur est inférieur&#10;ou égal à 18 mois, 2 points sont retirés.&#10;Si leurs genres ne correspondent pas à leurs préférences&#10;mutuelles, 2 points supplémentaires sont retirés.&#10;Enfin, chaque hobby commun entre l’hôte et le visiteur &#10;entraîne une pénalité de 1 point&#10; (→ score - N, avec N le nombre de hobbies communs).&#10;Le score final reflète ainsi la compatibilité en termes &#10;d’âge, de genre et de centres d’intérêt." />
+                        <HBox prefHeight="29.0" prefWidth="312.0" style="-fx-border-radius: 5;">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#diminuerScoreInitial" prefHeight="25.0" prefWidth="26.0" text="-" />
+                              <Button mnemonicParsing="false" onAction="#augmenterScoreInitial" text="+" />
+                              <Region prefHeight="27.0" prefWidth="8.0" />
+                              <Label prefHeight="25.0" prefWidth="164.0" text="score initial :">
+                                 <font>
+                                    <Font name="Verdana Bold" size="12.0" />
+                                 </font></Label>
+                              <Label fx:id="labelScoreInitial" prefHeight="26.0" prefWidth="52.0" text="10" />
+                           </children>
+                        </HBox>
                         <Region prefHeight="27.0" prefWidth="312.0" />
+                        <HBox prefHeight="29.0" prefWidth="312.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#diminuerEcartAge" prefHeight="25.0" prefWidth="26.0" text="-" />
+                              <Button mnemonicParsing="false" onAction="#augmenterEcartAge" text="+" />
+                              <Region prefHeight="27.0" prefWidth="8.0" />
+                              <Label prefHeight="25.0" prefWidth="168.0" text="point ecart age :">
+                                 <font>
+                                    <Font name="Verdana Bold" size="12.0" />
+                                 </font></Label>
+                              <Label fx:id="labelEcartAge" prefHeight="26.0" prefWidth="52.0" text="2" />
+                           </children>
+                        </HBox>
+                        <Region prefHeight="27.0" prefWidth="312.0" />
+                        <HBox prefHeight="29.0" prefWidth="312.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#diminuerPreferenceGenre" prefHeight="25.0" prefWidth="26.0" text="-" />
+                              <Button mnemonicParsing="false" onAction="#augmenterPreferenceGenre" text="+" />
+                              <Region prefHeight="27.0" prefWidth="8.0" />
+                              <Label prefHeight="25.0" prefWidth="169.0" text="point preference genre :">
+                                 <font>
+                                    <Font name="Verdana Bold" size="12.0" />
+                                 </font></Label>
+                              <Label fx:id="labelPreferenceGenre" prefHeight="26.0" prefWidth="52.0" text="2" />
+                           </children>
+                        </HBox>
+                        <Region prefHeight="27.0" prefWidth="312.0" />
+                        <HBox prefHeight="29.0" prefWidth="312.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#diminuerHobbyCommun" prefHeight="25.0" prefWidth="26.0" text="-" />
+                              <Button mnemonicParsing="false" onAction="#augmenterHobbyCommun" text="+" />
+                              <Region prefHeight="27.0" prefWidth="8.0" />
+                              <Label prefHeight="25.0" prefWidth="168.0" text="point Hobbie :">
+                                 <font>
+                                    <Font name="Verdana Bold" size="12.0" />
+                                 </font></Label>
+                              <Label fx:id="labelHobbyCommun" prefHeight="26.0" prefWidth="52.0" text="1" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>

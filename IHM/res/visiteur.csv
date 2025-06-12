@@ -1,6 +1,6 @@
 Nom;Prenom;Country;DateNaissance;GuestAnimalAllergy;HostHasAnimal;GuestFoodConstraint;HostFood;Hobbies;Genre;PairGender;History
-NomG1;PrenomG1;italie;2007-07-09;yes;none;porc;none;lecture,basket;female;female;none
-NomG2;PrenomG2;espagne;2008-11-26;no;none;gluten;none;lecture,basket;female;none;none
-NomG3;PrenomG3;allemagne;2006-01-30;yes;none;none;none;basket,piano;female;none;none
-NomG4;PrenomG4;france;2008-12-10;no;none;vegan,porc;none;jeux video,dessin,basket;female;male;none
-NomG5;PrenomG5;espagne;2006-01-06;yes;none;none;none;dessin;female;male;none
+Bernard;Paul;France;2007-06-18;no;no;none;none;lecture,football;male;female;none
+Meier;Sophie;Allemagne;2006-11-02;yes;no;gluten;none;cinema,danse;female;male;none
+Bianchi;Marco;Italie;2007-02-20;no;no;none;none;dessin,musique;male;female;none
+Schmidt;Eva;Allemagne;2008-03-15;no;no;porc;none;jeux video,danse;female;male;none
+Lemoine;Julie;France;2007-09-30;no;no;none;none;musique,lecture;female;male;none

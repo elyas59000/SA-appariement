@@ -16,6 +16,13 @@
          <font>
             <Font size="32.0" />
          </font>
+         <graphic>
+            <Label contentDisplay="CENTER" prefHeight="76.0" prefWidth="601.0" style="-fx-background-color: lightblue; -fx-alignment: center;" text="C’est Pas Pair 🤝" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Noto Sans Lisu Bold" size="32.0" />
+               </font>
+            </Label>
+         </graphic>
       </Label>
    </top>
    <center>
@@ -27,9 +34,9 @@
                      <children>
                         <VBox prefHeight="290.0" prefWidth="201.0">
                            <children>
-                              <Label prefHeight="35.0" prefWidth="168.0" text="Informations Hôte">
+                              <Label prefHeight="35.0" prefWidth="205.0" text="Informations Hôte">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Verdana Bold" size="18.0" />
                                  </font>
                               </Label>
                               <TextArea fx:id="textAreaHote" prefHeight="193.0" prefWidth="196.0" />
@@ -41,17 +48,23 @@
                               <ComboBox fx:id="comboBoxPaire" prefWidth="150.0" promptText="Choix de la paire" />
                               <Region prefHeight="20.0" prefWidth="194.0" />
                               <Label prefHeight="36.0" prefWidth="205.0" text="Score de compatibilité entre les 2 :" />
-                              <Label fx:id="labelScore" prefHeight="17.0" prefWidth="107.0" text="Label" />
+                              <Label fx:id="labelScore" alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="?">
+                                 <font>
+                                    <Font name="Verdana Bold" size="20.0" />
+                                 </font></Label>
                               <Region prefHeight="38.0" prefWidth="194.0" />
                               <Label text="Possède une contraite réhibitoire :" />
-                              <Label fx:id="labelRhibitoire" prefHeight="17.0" prefWidth="107.0" text="Label" />
+                              <Label fx:id="labelRhibitoire" alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="?">
+                                 <font>
+                                    <Font name="Verdana Bold" size="20.0" />
+                                 </font></Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="290.0" prefWidth="205.0">
+                        <VBox prefHeight="281.0" prefWidth="226.0">
                            <children>
-                              <Label prefHeight="35.0" prefWidth="168.0" text="Informations Visiteur">
+                              <Label prefHeight="35.0" prefWidth="225.0" text="Informations Visiteur">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Verdana Bold" size="18.0" />
                                  </font>
                               </Label>
                               <TextArea fx:id="textAreaVisiteur" prefHeight="193.0" prefWidth="154.0" />
@@ -65,6 +78,7 @@
                <children>
                   <Button fx:id="boutonRetour" mnemonicParsing="false" onAction="#allerSelectionMenu" prefHeight="59.0" prefWidth="113.0" text="Retour" />
                   <Button fx:id="boutonDefaire" mnemonicParsing="false" onAction="#defairePaire" prefHeight="51.0" prefWidth="236.0" text="PAIRING MANUEL (Défaire la paire)" />
+                  <Button fx:id="export" mnemonicParsing="false" onAction="#exporterPaires" prefHeight="59.0" prefWidth="113.0" text="exporter" />
                </children>
             </HBox>
          </children>
