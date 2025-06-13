@@ -139,7 +139,11 @@ public class SelectionMenuController implements ControlledScene {
 
     boolean compatible = ado1.estCompatible(ado2);
     int score = ado1.ScoreAffectation(ado2,Main.score_initial, Main.point_ecart_age, Main.point_preference_genre, Main.point_hobby_commun);
-    resultat.append("Compatibles ? ").append(compatible ? "✅ OUI" : "❌ NON").append("\n");
+    if (compatible == true) {
+        resultat.append("Compatibles ? ❌ NON\n");
+    } else {
+        resultat.append("Compatibles ? ❌ NON\n");
+    }
     resultat.append("Score d'affectation : ").append(score).append("\n");
 
     if (!compatible) {

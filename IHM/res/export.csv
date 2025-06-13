@@ -1,6 +1,5 @@
 InvitePrenom;InviteNom;HotePrenom;HoteNom;Score
-Marco;Bianchi;Claire;Moreau;6
-Sophie;Meier;Alice;Dupont;8
+Paul;Bernard;Claire;Moreau;5
+Sophie;Meier;null;null;inf
 Eva;Schmidt;Alice;Dupont;8
-Paul;Bernard;Hans;Müller;7
-Julie;Lemoine;Luca;Rossi;5
+Julie;Lemoine;Hans;Müller;6
